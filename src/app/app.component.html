@@ -1,3 +1,6 @@
-<app-face-snap [faceSnap]="mySnap"></app-face-snap>
-<app-face-snap [faceSnap]="myOtherSnap"></app-face-snap>
-<app-face-snap [faceSnap]="myLastSnap"></app-face-snap>
+<div class="face-snap-ctn">
+  <app-face-snap
+    *ngFor="let faceSnapElemOfArray of faceSnaps"
+    [faceSnap]="faceSnapElemOfArray"
+  ></app-face-snap>
+</div>
