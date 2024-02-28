@@ -6,9 +6,12 @@ import * as fr from '@angular/common/locales/fr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FaceSnapComponent } from './face-snap/face-snap.component';
+import { FaceSnapListComponent } from './face-snap-list/face-snap-list.component';
+import { HeaderComponent } from './header/header.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
-  declarations: [AppComponent, FaceSnapComponent],
+  declarations: [AppComponent, FaceSnapComponent, FaceSnapListComponent, HeaderComponent, LandingPageComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [{ provide: LOCALE_ID, useValue: 'fr_FR' }],
   bootstrap: [AppComponent],
