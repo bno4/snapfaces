@@ -1,19 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FaceSnap } from '../models/face-snap-model';
 import { FaceSnapsService } from '../services/face-snaps.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-face-snap',
-  templateUrl: './face-snap.component.html',
-  styleUrl: './face-snap.component.scss',
+  selector: 'app-single-face-snap',
+  templateUrl: './single-face-snap.component.html',
+  styleUrl: './single-face-snap.component.scss',
 })
-export class FaceSnapComponent implements OnInit {
-  @Input() faceSnap!: FaceSnap;
+export class SingleFaceSnapComponent implements OnInit {
+  faceSnap!: FaceSnap;
 
   constructor(
     private faceSnapsService: FaceSnapsService,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   snapped!: boolean;
@@ -21,6 +21,8 @@ export class FaceSnapComponent implements OnInit {
 
   ngOnInit(): void {
     this.likeText = 'Like';
+    const faceSnapId = +this.route.snapshot.params['id'];
+    this.faceSnap = this.faceSnapsService.getFaceSnapById(faceSnapId);
   }
   onSnap() {
     if (this.likeText === 'Like') {
@@ -30,8 +32,5 @@ export class FaceSnapComponent implements OnInit {
       this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'Unlike');
       this.likeText = 'Like';
     }
-  }
-  onViewFaceSnap(): void {
-    this.router.navigateByUrl(`facesnaps/${this.faceSnap.id}`);
   }
 }
